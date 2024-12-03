@@ -1,0 +1,281 @@
+[gd_scene load_steps=21 format=3 uid="uid://cpm8m3wfo1pvm"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_50vl0"]
+[ext_resource type="PackedScene" uid="uid://dly68fiobym74" path="res://Scenes/large_asteroid_a.tscn" id="2_i3k1b"]
+[ext_resource type="PackedScene" uid="uid://2udpctykb44r" path="res://Scenes/large_asteroid_b.tscn" id="3_u4hgj"]
+[ext_resource type="Theme" uid="uid://tpuhvv6lf01m" path="res://Assets/FontTheme.tres" id="4_538w4"]
+[ext_resource type="PackedScene" uid="uid://crq8py2x3pimw" path="res://Scenes/large_asteroid_c.tscn" id="4_y0twl"]
+[ext_resource type="PackedScene" uid="uid://bcvu5cqin31rx" path="res://Scenes/medium_asteroid_a.tscn" id="5_6s7yj"]
+[ext_resource type="PackedScene" uid="uid://c0gy0ucg6q3u1" path="res://Scenes/medium_asteroid_b.tscn" id="6_5bgou"]
+[ext_resource type="PackedScene" uid="uid://csxqp4yq83iek" path="res://Scenes/medium_asteroid_c.tscn" id="7_605ik"]
+[ext_resource type="PackedScene" uid="uid://c52exhe4hb5k5" path="res://Scenes/small_asteroid_a.tscn" id="8_5l31h"]
+[ext_resource type="PackedScene" uid="uid://bs1r2gw0yu6ba" path="res://Scenes/small_asteroid_b.tscn" id="9_lvvdg"]
+[ext_resource type="PackedScene" uid="uid://cgyeqic6ut0hx" path="res://Scenes/small_asteroid_c.tscn" id="10_q5g88"]
+[ext_resource type="PackedScene" uid="uid://ijm1dr42m32w" path="res://Scenes/player.tscn" id="11_lneqe"]
+[ext_resource type="Script" path="res://Scripts/asteroid_manager.gd" id="12_i5lxp"]
+[ext_resource type="Script" path="res://Scenes/ui_manager.gd" id="13_6b41g"]
+[ext_resource type="Script" path="res://Scenes/bullet_manager.gd" id="13_i4cfg"]
+[ext_resource type="Script" path="res://Scenes/item_manager.gd" id="16_rhafq"]
+[ext_resource type="PackedScene" uid="uid://wnmt8nmrje0f" path="res://Scenes/ammo_pack.tscn" id="17_cau2o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh6lw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Gradient" id="Gradient_yc7y4"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hshs2"]
+gradient = SubResource("Gradient_yc7y4")
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_50vl0")
+PLAYER = ExtResource("11_lneqe")
+
+[node name="UI Manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_6b41g")
+
+[node name="Menu" type="Panel" parent="UI Manager"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI Manager/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -240.0
+offset_right = 273.0
+offset_bottom = -103.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_538w4")
+theme_type_variation = &"HeaderLarge"
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start Button" type="Button" parent="UI Manager/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = -42.0
+offset_right = 105.5
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_538w4")
+theme_override_font_sizes/font_size = 56
+text = "Start"
+
+[node name="Quit Button" type="Button" parent="UI Manager/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 102.0
+offset_right = 106.0
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_538w4")
+theme_override_font_sizes/font_size = 56
+text = "Quit
+"
+
+[node name="Game Over Screen" type="Panel" parent="UI Manager"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI Manager/Game Over Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -539.0
+offset_top = -276.0
+offset_right = 541.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_538w4")
+theme_type_variation = &"HeaderLarge"
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI Manager/Game Over Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -81.0
+offset_right = 90.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_538w4")
+theme_type_variation = &"HeaderSmall"
+text = "Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="UI Manager/Game Over Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -27.0
+offset_right = 228.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_538w4")
+theme_type_variation = &"HeaderMedium"
+text = "0000"
+horizontal_alignment = 1
+
+[node name="Restart Button" type="Button" parent="UI Manager/Game Over Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = 94.0
+offset_right = 240.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_538w4")
+theme_override_font_sizes/font_size = 56
+text = "Restart"
+
+[node name="Quit Button" type="Button" parent="UI Manager/Game Over Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = 189.0
+offset_right = 139.5
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_538w4")
+theme_override_font_sizes/font_size = 56
+text = "Quit
+"
+
+[node name="Game Overlay" type="Panel" parent="UI Manager"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mh6lw")
+
+[node name="Ammo Bar" type="TextureProgressBar" parent="UI Manager/Game Overlay"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -121.0
+offset_right = 39.0
+offset_bottom = -15.0
+grow_vertical = 0
+max_value = 30.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_hshs2")
+
+[node name="Score Label" type="Label" parent="UI Manager/Game Overlay"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 19.0
+offset_right = 158.0
+offset_bottom = 80.0
+theme = ExtResource("4_538w4")
+text = "Score: "
+
+[node name="Score" type="Label" parent="UI Manager/Game Overlay"]
+layout_mode = 1
+offset_left = 240.0
+offset_top = 19.0
+offset_right = 578.0
+offset_bottom = 61.0
+theme = ExtResource("4_538w4")
+text = "0"
+
+[node name="Asteroid Manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("12_i5lxp")
+LARGE_ASTEROID_A = ExtResource("2_i3k1b")
+LARGE_ASTEROID_B = ExtResource("3_u4hgj")
+LARGE_ASTEROID_C = ExtResource("4_y0twl")
+MEDIUM_ASTEROID_A = ExtResource("5_6s7yj")
+MEDIUM_ASTEROID_B = ExtResource("6_5bgou")
+MEDIUM_ASTEROID_C = ExtResource("7_605ik")
+SMALL_ASTEROID_A = ExtResource("8_5l31h")
+SMALL_ASTEROID_B = ExtResource("9_lvvdg")
+SMALL_ASTEROID_C = ExtResource("10_q5g88")
+
+[node name="Bullet Manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("13_i4cfg")
+
+[node name="Item Manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("16_rhafq")
+AMMO_PACK = ExtResource("17_cau2o")
+
+[node name="Audio Manager" type="Node" parent="."]
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="Audio Manager"]
+volume_db = 11.886
+
+[connection signal="pressed" from="UI Manager/Menu/Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI Manager/Menu/Quit Button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="UI Manager/Game Over Screen/Restart Button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI Manager/Game Over Screen/Quit Button" to="." method="_on_quit_button_pressed"]

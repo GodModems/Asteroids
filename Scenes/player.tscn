@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://ijm1dr42m32w"]
+
+[ext_resource type="Texture2D" uid="uid://clhwa4je3nmvb" path="res://Assets/asteroids-2x.png" id="1_6x6vo"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="2_v1uel"]
+[ext_resource type="PackedScene" uid="uid://da2u2xwgljt28" path="res://Scenes/small_bullet.tscn" id="3_8imkw"]
+
+[node name="Player" type="Sprite2D"]
+texture = ExtResource("1_6x6vo")
+offset = Vector2(0, 2)
+region_enabled = true
+region_rect = Rect2(208, 256, 80, 64)
+script = ExtResource("2_v1uel")
+bulletScene = ExtResource("3_8imkw")
+metadata/color = Color(0, 0, 0, 1)
+metadata/player = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, 2)
+
+[node name="Polygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-25, -20, 26, -5, 26, -1, -23, 16, -27, 13, -17, 5, -17, -8, -27, -15)
+
+[node name="Restock" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Gun" type="Polygon2D" parent="."]
+offset = Vector2(0, 2)
+polygon = PackedVector2Array(15, -9, 15, 4, 27, 0, 27, -5)
+
+[node name="Barrel" type="Node2D" parent="Gun"]
+position = Vector2(28, 0)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="Restock" to="." method="_on_restock_timeout"]

@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://tpuhvv6lf01m"]
+
+[ext_resource type="FontFile" uid="uid://t5ipmdai4vcj" path="res://Assets/QuinqueFive.ttf" id="1_dysaj"]
+
+[resource]
+default_font = ExtResource("1_dysaj")
+default_font_size = 30
+Button/font_sizes/font_size = 48
+HeaderLarge/font_sizes/font_size = 100
+HeaderMedium/font_sizes/font_size = 48
+HeaderSmall/font_sizes/font_size = 24

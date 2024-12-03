@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8v8371tsna2u"]
+
+[sub_resource type="GDScript" id="GDScript_ne0a6"]
+script/source = "extends Node
+
+@onready var parent = self.get_parent()
+
+@export var velocity : Vector2
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	update_position()
+
+
+func update_position():
+	parent.position += velocity
+"
+
+[node name="Velocity Component" type="Node"]
+script = SubResource("GDScript_ne0a6")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://wnmt8nmrje0f"]
+
+[ext_resource type="Texture2D" uid="uid://clhwa4je3nmvb" path="res://Assets/asteroids-2x.png" id="1_nv78t"]
+[ext_resource type="Script" path="res://Scenes/ammo_pack.gd" id="2_2oqx7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ax1x"]
+radius = 5.0
+
+[node name="Ammo Pack" type="Sprite2D"]
+modulate = Color(0, 1, 0.168627, 1)
+texture = ExtResource("1_nv78t")
+region_enabled = true
+region_rect = Rect2(480, 288, 32, 32)
+script = ExtResource("2_2oqx7")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_8ax1x")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

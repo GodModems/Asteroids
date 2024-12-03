@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://2udpctykb44r"]
+
+[ext_resource type="Texture2D" uid="uid://clhwa4je3nmvb" path="res://Assets/asteroids-2x.png" id="1_mwvns"]
+[ext_resource type="Script" path="res://Scripts/large_asteroid.gd" id="2_jusln"]
+
+[node name="Large Asteroid B" type="Sprite2D"]
+texture = ExtResource("1_mwvns")
+region_enabled = true
+region_rect = Rect2(160, 8, 160, 144)
+script = ExtResource("2_jusln")
+metadata/destroyable = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-28, 55, -55, 15, -55, -29, -17, -28, -30, -56, 13, -57, 54, -27, 53, -10, 19, -1, 56, 26, 28, 54, 11, 42)
